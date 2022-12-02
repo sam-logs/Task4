@@ -1,3 +1,4 @@
+import com.bhavna.bean.Department;
 import com.bhavna.bean.Employee;
 import com.bhavna.dao.Operations;
 
@@ -9,6 +10,9 @@ public class Main {
         operations.updateData();
 
         Employee employee = new Employee(906,"Rajeev",45000,"2022-07-10");
-        operations.saveData(employee);
+        operations.saveEmployeeData(employee);
+
+        Department department = new Department(101,"Meridian Link",903);
+        operations.saveDepartmentData(department);
     }
 }

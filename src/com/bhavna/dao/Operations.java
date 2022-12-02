@@ -1,5 +1,6 @@
 package com.bhavna.dao;
 
+import com.bhavna.bean.Department;
 import com.bhavna.bean.Employee;
 import com.bhavna.utility.MyConnection;
 
@@ -41,7 +42,7 @@ public class Operations {
         }
     }
 
-    public void saveData(Employee employee) {
+    public void saveEmployeeData(Employee employee) {
         Connection connection = MyConnection.connection();
         try {
             Statement statement = connection.createStatement();
@@ -59,6 +60,23 @@ public class Operations {
             System.out.println(e);
         }
 
+    }
+
+    public void saveDepartmentData(Department department){
+        Connection connection = MyConnection.connection();
+        try {
+            Statement statement = connection.createStatement();
+            String query = "insert into department values('" + department.getDepartmentId() + "', '" + department.getDepartmentName()
+                    + "')";
+            statement.executeUpdate(query);
+            ResultSet resultSet = statement.executeQuery("select * from department");
+
+            while (resultSet.next()){
+                System.out.println(resultSet.getInt(1)+" "+resultSet.getString(2));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void countEmployeeData() {
